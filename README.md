@@ -5,7 +5,7 @@ Wordpress-Plugin: Responsive Lightbox mit Slideshow-Effekt
 
 Verwendungsbeispiel:
 
-<a rel="lightbox" href="http://farm8.static.flickr.com/7322/9553011667_3d33f396aa_b.jpg"><img alt="Mathematisches Institut an der Technischen Fakultät" src="http://farm8.static.flickr.com/7322/9553011667_3d33f396aa_s.jpg"></a>
+&lt;a rel=&quot;lightbox&quot; href=&quot;http://farm8.static.flickr.com/7322/9553011667_3d33f396aa_b.jpg&quot;&gt;&lt;img alt=&quot;Mathematisches Institut an der Technischen FakultÃ¤t&quot; src=&quot;http://farm8.static.flickr.com/7322/9553011667_3d33f396aa_s.jpg&quot;&gt;&lt;/a&gt;
 
 Erläuterung:
 
