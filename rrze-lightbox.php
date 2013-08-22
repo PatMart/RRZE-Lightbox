@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: RRZE-Lightbox
- * Description: Lightbox mit Slideshow-Effekt.
+ * Description: Responsive Lightbox mit Slideshow-Effekt.
  * Version: 1.0
  * Author: rvdforst
  * Author URI: http://blogs.fau.de/webworking/
@@ -36,7 +36,7 @@ class RRZE_Lightbox {
         
         add_action( 'init', array( __CLASS__, 'update_version' ) );
              
-        add_action( 'wp_enqueue_scripts', array( __CLASS__, 'register_scripts' ) );
+        add_action( 'wp_enqueue_scripts', array( __CLASS__, 'enqueue_scripts' ) );
         
      }
 
@@ -100,10 +100,7 @@ class RRZE_Lightbox {
         return $options;
     }
         
-    public static function register_scripts() {
-        if( ! apply_filters( 'register_lightbox', false ) )
-            return;
-        
+    public static function enqueue_scripts() {
         $locale = sprintf( '%s/lightbox.css', get_locale() );
         if( ! is_readable( sprintf( '%scss/%s', plugin_dir_path( __FILE__ ), get_locale(), $locale ) ) )
             $locale = 'lightbox.css';
@@ -113,8 +110,15 @@ class RRZE_Lightbox {
         wp_register_script( 'jquery.touchwipe', sprintf( '%sjs/jquery.touchwipe.min.js', plugin_dir_url( __FILE__ ) ),  array('jquery'), self::version, true );	
         wp_register_script( 'jquery.lightbox', sprintf( '%sjs/jquery.lightbox.js', plugin_dir_url( __FILE__ ) ),  array('jquery'), self::version, true );
                 
-        wp_localize_script( 'jquery.lightbox', 'JQLBSettings', self::get_options() );
-        
+        wp_localize_script( 'jquery.lightbox', 'JQLBSettings', self::get_options() );        
+                
+        add_action( 'enqueue_lightbox', array( __CLASS__, 'enqueue_lightbox' ), 10, 0 );       
+    }
+    
+    public static function enqueue_lightbox() {
+        wp_enqueue_style( 'jquery.lightbox' );
+        wp_enqueue_script( 'jquery.lightbox' );
+        wp_enqueue_script( 'jquery.touchwipe' );
     }
         
 }
